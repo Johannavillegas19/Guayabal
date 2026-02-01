@@ -1,11 +1,18 @@
 import { api } from "./api";
 
-export const fetchCart = async () => {
-  const response = await api.get("cart/");
-  return response.data;
-};
+export const addToCartService = async (
+  productId: number,
+  token: string
+) => {
+  const response = await api.post(
+    "cart/",
+    { product_id: productId, quantity: 1 },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
-export const updateCart = async (payload: any) => {
-  const response = await api.post("cart/", payload);
   return response.data;
 };

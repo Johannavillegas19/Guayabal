@@ -1,6 +1,11 @@
 import { api } from "./api";
 
-export const fetchProducts = async () => {
-  const response = await api.get("products/");
+export const getProductsService = async (token: string) => {
+  const response = await api.get("products/", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
   return response.data;
 };
